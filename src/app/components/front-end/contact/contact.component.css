@@ -1,0 +1,11 @@
+.studio-area .studio-content {
+    position: relative;
+    border-radius: 0 5px 5px 0;
+    background: #fff;
+    padding: 35px 100px 40px 0;
+    margin-left: 20px;
+}
+
+a {
+    color: #777777 !important;
+}

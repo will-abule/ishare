@@ -1,0 +1,19 @@
+ 
+<section class="section-gap studio-area">
+  <div class="overlay overlay-bg"></div>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-10 offset-md-1">
+        <loading-spinner *ngIf="showSpinner"></loading-spinner>
+        <div class="studio-content" *ngIf="about | async as a">
+          <p [froalaView]="a.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End studio Area -->
+
+<!-- team here -->
+
+<footer class="mt-70"></footer>

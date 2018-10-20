@@ -1,0 +1,34 @@
+<br><br><br>
+<div class="container">
+  <div class="container">
+    <h2>Projects</h2>
+    <br>
+  </div>
+
+  <loading-spinner *ngIf="showSpinner"></loading-spinner>
+  <div class="row align-items-center" style="margin:20px 0px">
+    
+    <div class="card col-md-4 text-center" style="margin-bottom:30px; width: 90%; padding-top: 14px; border: transparent !important;" 
+    *ngFor="let p of Project | async | paginate: { itemsPerPage: 10, currentPage: p }">
+   
+      <div class="studio-thumb" lazy-load-images>
+          <a [routerLink]="['/project/' , p.projectUrl]">
+            <img [attr.data-src]="p.url" class="img-fluid" [alt]="p.title">
+          </a>
+      </div>
+      <div class="studio-content text-left">
+        <h4><a [routerLink]="['/project/' , p.projectUrl]">{{p.title}}</a></h4>
+        <p [froalaView]="p.discription"></p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="text-center">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+<br>
+<br>
+<footer class="mt-70"></footer>

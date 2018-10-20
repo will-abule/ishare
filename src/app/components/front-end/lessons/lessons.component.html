@@ -1,0 +1,42 @@
+<!-- Start studio Area -->
+<section class="section-gap studio-area">
+  <div class="overlay overlay-bg"></div>
+  <div class="container">
+    <loading-spinner *ngIf="showSpinner"></loading-spinner>
+    <no-content *ngIf="value === 0"></no-content>
+    <div class="row align-items-center" style="margin:20px 0px" *ngFor="let l of Lesson | async | paginate: { itemsPerPage: 10, currentPage: p }">
+      <div class="col-md-4 col-sm-6 text-center">
+
+        <div class="studio-thumb" lazy-load-images>
+          <a [routerLink]="['/lesson/' , l.id]">
+            <img [attr.data-src]="l.url" class="img-fluid" [alt]="l.title">
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-8 col-sm-6">
+        <div class="studio-content">
+          <h2 style="color: #fff">{{l.title}}</h2>
+          <p [froalaView]="l.discription"></p>
+          <a style="
+            color: #4d4d4d !important;
+            background: #fff !important;
+            border: 1px solid #fff !important;" 
+            class="primary-btn"
+            [routerLink]="['/lesson/' , l.id]" class="primary-btn"
+          >
+            View <span style="color: #fff" class="lnr lnr-arrow-right"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End studio Area -->
+
+<div class="text-left ml-30">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+<br>
+<br>
+<footer class="mt-70"></footer>

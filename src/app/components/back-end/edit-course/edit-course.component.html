@@ -1,0 +1,149 @@
+<div class="section-top-border container">
+  <div class="row">
+    <div class="col-lg-10 col-md-10 offset-md-1" style="margin-top: 50px !important">
+      <h3 class="mb-30">Edit Course</h3>
+      <form #courses="ngForm" (ngSubmit)="save(courses.value)" *ngIf="Courses as c">
+        <div class="mt-10">
+          <input class="single-input" [(ngModel)]="c.title || courses.title" #title='ngModel' name="title" id="title" type="text" placeholder="Title"
+            required onfocus="this.placeholder = ''" onblur="this.placeholder = 'Title'">
+
+          <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+            Title is required.
+          </div>
+
+          <br>
+
+          <input class="single-input" [(ngModel)]="c.videoUrl || courses.videoUrl" #videoUrl='ngModel' name="videoUrl" id="videoUrl" type="text"
+            placeholder="Video Url" required onfocus="this.placeholder = ''" onblur="this.placeholder = 'Video Url'">
+
+          <div class="alert alert-danger" *ngIf="videoUrl.touched && videoUrl.invalid">
+            Video Url is required.
+          </div>
+          <!-- 
+          <br>
+
+          <div class="form-group">
+            <label for="cover-photo">Video Cover Photo</label>
+            <input 
+              [(ngModel)]="courses.file" 
+              #file='ngModel' 
+              name="file"  
+              type="file" 
+              class="form-control-file" 
+              id="cover-photo" 
+              (change)="detectFiles($event)"
+              required 
+            >
+          </div>
+
+          <div class="alert alert-danger" *ngIf="file.touched && file.invalid">
+            Cover Photo is required.
+          </div>
+
+          <br> -->
+
+          <div class="input-group-icon mt-10">
+            <label for="cover-photo">Select a Project for this course</label>
+            <div class="form-select">
+              <select class="nice-select" [(ngModel)]="courses.project || c.project" #project='ngModel' name="project" type="text" id="project"
+                required>
+                <option class="option" *ngFor="let p of Projects | async" [value]="p.projectUrl">{{ p.title }}</option>
+              </select>
+            </div>
+            <!-- 
+          <input 
+            class="single-input" 
+            [(ngModel)]="c.project || courses.project" 
+            #project='ngModel' 
+            name="project" 
+            id="project" 
+            type="text" 
+            placeholder="Project"
+            required
+            onfocus="this.placeholder = ''" 
+            onblur="this.placeholder = 'project'"
+          > -->
+
+            <div class="alert alert-danger" *ngIf="project.touched && project.invalid">
+              Project is required.
+            </div>
+          </div>
+            <!-- <div class="input-group-icon mt-10">
+            <label for="cover-photo">Select a Project for this course</label>
+            <div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
+            <div class="form-select">
+              <select
+                [(ngModel)]="courses.project" 
+                #category='ngModel' 
+                name="category"  
+                type="text"
+                id="category" 
+                (change)="detectFiles($event)"
+                required
+              >
+                <option></option>
+                <option *ngFor="let p of Projects | async" [value]="p.url">{{ p.title }}</option>
+              </select>
+            </div>
+          </div> -->
+
+            <div class="mt-10">
+              <label for="body">Course Body / Content</label>
+              <div class="container-fluid">
+
+                <div class="row">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">markdown Example</h3>
+                      </div>
+                      <div class="panel-body">
+                        <textarea [(ngModel)]="courses.body || markdownContent" #body='ngModel' name="body" class="form-control"
+                          required style="overflow-y:auto; height: 100vh" id="textbox"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="alert alert-danger" *ngIf="body.touched && body.invalid">
+                      Body is required.
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">HTML</h3>
+                      </div>
+                      <div class="panel-body" style="overflow-y:auto; height: 100vh">
+                        <div markdown [data]='markdownContent'></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- letter conditions -->
+            <div class="alert alert-danger" *ngIf="!courses.valid">
+              form is not valid
+            </div>
+
+            <br>
+
+            <div class="alert alert-success" *ngIf="courses.valid">
+              Everything looks good
+            </div>
+
+            <button [disabled]="!courses.valid" type="submit" class="btn btn-outline-success mr-10" [class.disabled]="activeButton" (click)="activeButton = !activeButton">
+              Submit
+            </button>
+
+            <a (click)="cancel()" class="btn btn-outline-warning mr-10" [class.disabled]="activeButton" (click)="activeButton = !activeButton">Cancel</a>
+            <a [class.disabled]="activeButton" (click)="activeButton = !activeButton" (click)="delete(c)" class="btn btn-outline-danger">Delete</a>
+
+            <!-- letter conditions -->
+          </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mt-70"></footer>

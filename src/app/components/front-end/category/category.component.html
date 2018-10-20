@@ -1,0 +1,15 @@
+<br><br><br><br><br>
+<div class="container">
+    <div class="single-element-widget mt-30">
+        <h2 class="mb-30">Categories</h2>
+        <loading-spinner *ngIf="showSpinner"></loading-spinner>
+        <div 
+          style="padding: 10px 30px;"
+          class="switch-wrap d-flex justify-content-between" 
+          *ngFor="let c of Category | async"
+        >
+          <p><a [routerLink]="['/category/' , c.url]">{{ c.title }}</a></p>
+        </div>
+      </div>
+</div>
+<footer class="mt-70"></footer>

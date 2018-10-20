@@ -1,0 +1,29 @@
+<div class="section-top-border container">
+  <div class="row">
+    <div class="col-lg-8 col-md-8 offset-md-2 text-center" style="margin-top: 50px !important" *ngIf="User as c">
+      <h3 class="mb-30">Edit User</h3>
+      <p>{{c.displayName}} {{c.uid}}</p>
+      <h4>Previladges</h4>
+      <p>User: {{c.roles | json}}</p>
+      <button (click)="makeUser(c)" class="btn btn-outline-info mr-10 mt-10" [class.disabled]="activeButton" (click)="activeButton = !activeButton">
+        Make User
+      </button>
+      <a (click)="makeSubscriber(c)" class="btn btn-outline-warning mr-10 mt-10" [class.disabled]="activeButton" (click)="activeButton = !activeButton">
+        Make Subscriber
+      </a>
+      <a (click)="makeAdmin(c)" class="btn btn-outline-primary mr-10 mt-10" [class.disabled]="activeButton" (click)="activeButton = !activeButton">
+        Make Admin
+      </a>
+      <a (click)="addToTeam(c)" class="btn btn-outline-success mr-10 mt-10" [class.disabled]="activeButton" (click)="activeButton = !activeButton">
+        Add To Team
+      </a>
+      <a (click)="removeFromTeam(c)" class="btn btn-outline-danger mr-10 mt-10" [class.disabled]="activeButton" (click)="activeButton = !activeButton">
+        Remove From Team
+      </a>
+      <a (click)="cancel(c)" class="btn btn-outline-secondary mr-10 mt-10" [class.disabled]="activeButton" (click)="activeButton = !activeButton">
+        Cancel
+      </a>
+    </div>
+  </div>
+</div>
+<footer class="mt-70"></footer>

@@ -1,0 +1,16 @@
+<ngu-carousel [inputs]="carouselTile" (initData)="initDataFn($event)">
+
+  <ngu-tile NguCarouselItem *ngFor="let l of lesson | paginate: { itemsPerPage: 8, currentPage: p }">
+    <a [routerLink]="['/lesson/' , l.id]">
+      <div class="card">
+        <img class="card-img-top img-fluid" [src]="l.url" [alt]="l.title">
+        <div class="card-body">
+          <h5 class="card-title">{{ l.title }}</h5>
+        </div>
+      </div>
+    </a>
+  </ngu-tile>
+
+  <button NguCarouselPrev style="background: #df003a; color: #fff;" class='leftRs'>&lt;</button>
+  <button NguCarouselNext style="background: #df003a; color: #fff;"class='rightRs'>&gt;</button>
+</ngu-carousel>

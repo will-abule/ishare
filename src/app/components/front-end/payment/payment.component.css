@@ -1,0 +1,12 @@
+.paystack-container {
+    font-size: 16px;
+    margin-top: 30px !important;
+}
+
+.primary-btn{
+    border: 1px solid transparent !important;
+}
+
+.primary-btn:hover{
+    background : transparent !important;
+}

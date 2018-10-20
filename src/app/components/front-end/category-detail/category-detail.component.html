@@ -1,0 +1,38 @@
+ 
+<!-- Start studio Area -->
+<section class="section-gap studio-area">
+<div class="overlay overlay-bg"></div>
+  <div class="container">
+    <!-- <loading-spinner *ngIf="showSpinner"></loading-spinner> -->
+    <div class="row align-items-center" *ngIf="filteredLesson.length == 0">
+      <p> No Lesson Found </p>
+    </div>
+    
+    <div class="row align-items-center" style="margin:20px 0px"
+    *ngFor="let l of filteredLesson | paginate: { itemsPerPage: 10, currentPage: p }"
+    >
+      <div class="col-md-4 col-sm-6 text-center">
+        <div class="studio-thumb">
+          <a [routerLink]="['/lesson/' , l.id]">
+            <img [src]="l.url" class="img-fluid" [alt]="l.title">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-8 col-sm-6">
+        <div class="studio-content">
+          <h2>{{l.title}}</h2>
+          <p [froalaView]="l.discription"></p>
+          <a [routerLink]="['/lesson/' , l.id]" class="primary-btn">View<span class="lnr lnr-arrow-right"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End studio Area -->
+
+<div class="text-center">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+<br>
+<br>
+<footer class="mt-70"></footer>

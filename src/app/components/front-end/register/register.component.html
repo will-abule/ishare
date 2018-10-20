@@ -1,0 +1,64 @@
+<div class="relative container">
+  <div class="post">
+    <div class="post-content mt-100">
+      <img src="./assets/img/register.jpg" alt="registration image">
+    </div>
+    <div class="post-footer">
+      <div class="post-title">
+        <div class="wrapper">
+          <ng-container>
+
+            <h5 class="mb-30">sup fella! kindly Sign Up <img src="./assets/signup.png" alt="sign up"></h5>
+            <form [formGroup]="userForm" (ngSubmit)="signup()">
+
+              <div class="mt-10">
+                <input formControlName="name" type="text" name="name" placeholder="John Smith" onfocus="this.placeholder = ''" onblur="this.placeholder = 'John Smith'"
+                  required class="single-input" id="name">
+              </div>
+
+              <div *ngIf="formErrors.name" class="alert alert-danger" role="alert">
+                {{ formErrors.name }}
+              </div>
+
+              <div class="mt-10">
+                <input formControlName="email" type="email" name="email" placeholder="example@gmail.com" onfocus="this.placeholder = ''"
+                  onblur="this.placeholder = 'example@gmail.com'" required class="single-input" id="email">
+              </div>
+
+              <div *ngIf="formErrors.email" class="alert alert-danger" role="alert">
+                {{ formErrors.email }}
+              </div>
+
+              <div class="mt-10">
+                <input formControlName="password" type="password" name="password" placeholder="Password" onfocus="this.placeholder = ''"
+                  onblur="this.placeholder = 'Password'" required class="single-input" id="password">
+              </div>
+
+              <div *ngIf="formErrors.password" class="alert alert-danger" role="alert">
+                {{ formErrors.password }}
+              </div>
+
+              <div *ngIf="userForm.valid" class="alert alert-success" role="alert">Everything Looks Good</div>
+
+              <button type="submit" [disabled]="!userForm.valid" class="btn btn-outline-success mt-10" [class.disabled]="activeButton"
+                (click)="activeButton = !activeButton">
+                Submit
+                <!-- <span *ngIf="!loader" class="lnr lnr-arrow-right"></span> -->
+                <div style="float: right;" [class.loader]="loader"></div>
+              </button>
+            </form>
+            <br>
+            <br>
+            <p *ngIf="!user">Already have an account?
+              <a routerLink="/login">Click here</a>to login!</p>
+            <br>
+            <br>
+
+          </ng-container>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="mt-70"></footer>

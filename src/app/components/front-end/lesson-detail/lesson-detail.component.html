@@ -1,0 +1,51 @@
+<div class="container">
+  <section class="section-gap studio-area">
+    <div class="overlay overlay-bg"></div>
+    <loading-spinner *ngIf="showSpinner"></loading-spinner>
+    <div *ngIf="Lesson | async as l">
+      <div class="row align-items-center">
+        <div class="col-md-12" style="padding: 0 40px;">
+          <h2>{{l.title}}</h2>
+          <div class="embed-responsive embed-responsive-16by9">
+            <youtube-player [videoId]="l.videoUrl" (ready)="savePlayer($event)" (change)="onStateChange($event)"></youtube-player>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="">
+              <!-- <h2>{{l.title}}</h2> -->
+              <br>
+              <span class="customizable">
+                <button class="bt" mat-icon-button shareButton="facebook" #fbBtn [style.color]="share.prop.facebook.color">
+                  <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon> 
+                </button>
+                <button class="bt" mat-icon-button shareButton="twitter" #twtBtn [style.color]="share.prop.twitter.color">
+                  <fa-icon [icon]="share.prop.twitter.icon" size="lg"></fa-icon>
+                </button>
+                <button class="bt" mat-icon-button shareButton="linkedin" #inBtn [style.color]="share.prop.linkedin.color">
+                  <fa-icon [icon]="share.prop.linkedin.icon" size="lg"></fa-icon>
+                </button>
+                <button class="bt" mat-icon-button shareButton="whatsapp" #wtsBtn [style.color]="share.prop.whatsapp.color">
+                  <fa-icon [icon]="share.prop.whatsapp.icon" size="lg"></fa-icon>
+                </button>
+                <button class="bt" mat-icon-button shareButton="telegram" #teleBtn [style.color]="share.prop.telegram.color">
+                  <fa-icon [icon]="share.prop.telegram.icon" size="lg"></fa-icon>
+                </button>
+                <button class="bt" mat-icon-button shareButton="pinterest" #pinBtn [style.color]="share.prop.pinterest.color">
+                  <fa-icon [icon]="share.prop.pinterest.icon" size="lg"></fa-icon>
+                </button>
+              </span>
+              <br>
+              <hr>
+              <p markdown ngPreserveWhitespaces [data]="l.body"></p>
+            </div>
+            <disqus-thread [page-identifier]="pageId" [page-url]="url"></disqus-thread>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<footer class="mt-70"></footer>

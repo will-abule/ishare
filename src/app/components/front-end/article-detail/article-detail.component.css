@@ -1,0 +1,22 @@
+/* b, i, sup, sub, u, del {
+    color: #ffffff !important;
+} */
+
+.studio-area .studio-content:after {
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 0;
+    background: #fff !important;
+    width: 70px;
+    height: 100%;
+    border-radius: 5px 0 0 5px;
+}
+
+
+.studio-area .studio-content {
+    position: relative;
+    border-radius: 0 5px 5px 0;
+    background: #fff !important;
+    padding: 35px 100px 40px 0;
+}

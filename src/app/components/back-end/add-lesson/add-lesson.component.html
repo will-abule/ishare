@@ -1,0 +1,192 @@
+
+<div class="section-top-border container">
+  <div class="row">
+    <div class="col-lg-10 col-md-10 offset-md-1" style="margin-top: 50px !important">
+      <h3 class="mb-30">Add A Lesson</h3>
+      <form  #lesson="ngForm" (ngSubmit)="save(lesson.value)">
+        <div class="mt-10">
+          <input 
+            class="single-input" 
+            [(ngModel)]="lesson.title" 
+            #title='ngModel' 
+            name="title" 
+            id="title" 
+            type="text" 
+            placeholder="Title"
+            required
+            onfocus="this.placeholder = ''" 
+            onblur="this.placeholder = 'Title'"
+          >
+
+          <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+            Title is required.
+          </div>
+
+          <br>
+
+          <input 
+            class="single-input" 
+            [(ngModel)]="lesson.videoUrl" 
+            #videoUrl='ngModel' 
+            name="videoUrl" 
+            id="videoUrl" 
+            type="text" 
+            placeholder="Video Url"
+            required
+            onfocus="this.placeholder = ''" 
+            onblur="this.placeholder = 'Video Url'"
+          >
+
+          <div class="alert alert-danger" *ngIf="videoUrl.touched && videoUrl.invalid">
+            Video Url is required.
+          </div>
+
+          <div class="input-group-icon mt-10">
+            <label for="cover-photo">Select a Category for this Lesson</label>
+            <div class="form-select">
+              <select
+                class="nice-select"
+                [(ngModel)]="lesson.category" 
+                #category='ngModel' 
+                name="category"  
+                type="text"
+                id="category" 
+                required
+              >
+                <option class="option" *ngFor="let c of Categories | async" [value]="c.url">{{ c.title }}</option>
+              </select>
+            </div>
+
+            <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
+              Lesson Category is required.
+            </div>
+          </div>
+
+          <br>
+
+          <div class="form-group">
+            <label for="cover-photo">Video Cover Photo</label>
+            <input 
+              [(ngModel)]="lesson.file" 
+              #file='ngModel' 
+              name="file"  
+              type="file" 
+              class="form-control-file" 
+              id="cover-photo" 
+              (change)="detectFiles($event)"
+            >
+          </div>
+          
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="5 / 5"
+                [resizeToWidth]="512"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"
+                (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>
+            </div>
+
+            <div class="col-sm-6">
+                <img class="image-fluid" [src]="croppedImage" />
+            </div>
+          </div>
+  
+          <div class="alert alert-danger" *ngIf="!selectedFiles">
+            Cover Photo is Needed
+          </div>
+          <br>
+
+          <div class="mt-10">
+            <label for="discription">Lesson Discription</label>
+            <textarea 
+              [(ngModel)]="lesson.discription" 
+              #discription='ngModel' 
+              name="discription" 
+              class="from-control card" 
+              id="discription" 
+              required
+              style="width: 100%;
+              height: 100px;
+              overflow-y: scroll;
+              overflow-x: hidden;
+              padding: 10px;"
+            >
+            </textarea>
+
+            <div class="alert alert-danger" *ngIf="discription.touched && discription.invalid">
+              Lesson Discription is required.
+            </div>
+          </div>
+
+          <div class="mt-10">
+            <label for="body">Lesson Body / Content</label>
+            <div class="container-fluid">
+
+              <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">markdown</h3>
+                    </div>
+                    <div class="panel-body">
+                      <textarea [(ngModel)]="lesson.body || markdownContent" #body='ngModel' name="body" class="form-control" id="body" required
+                        style="overflow-y:auto; height: 100vh"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="alert alert-danger" *ngIf="body.touched && body.invalid">
+                    Body is required.
+                  </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">HTML View</h3>
+                    </div>
+                    <div class="panel-body" style="overflow-y:auto; height: 100vh">
+                      <div markdown [data]='markdownContent'></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- letter conditions -->
+          <div class="alert alert-danger" *ngIf="!lesson.valid">
+            form is not valid
+          </div>
+
+          <br>
+
+          <div class="alert alert-success" *ngIf="lesson.valid">
+            Everything looks good
+          </div>
+
+          <button 
+            [disabled]="!lesson.valid || !selectedFiles" 
+            type="submit" class="btn btn-outline-success mr-10"
+            [class.disabled]="activeButton" 
+            (click)="activeButton = !activeButton"
+          >
+            Submit
+          </button>
+
+          <a 
+          (click)="cancel()" class="btn btn-outline-warning mr-10"
+          [class.disabled]="activeButton" 
+          (click)="activeButton = !activeButton"
+          >Cancel</a>
+          <!-- letter conditions -->
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer class="mt-70"></footer>

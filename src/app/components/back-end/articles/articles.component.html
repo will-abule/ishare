@@ -1,0 +1,38 @@
+ 
+<div class="container">
+  <div class="col-md-8 offset-md-2">
+    <div class="section-top-border">
+      <h3 class="mb-30">Articles</h3>
+
+      <input type="text" #query (keyup)="filter(query.value)" placeholder="Search.." class="single-input">
+      <br>
+      <div class="progress-table-wrap">
+        <div class="progress-table">
+          <div class="table-head">
+            <div class="serial">#</div>
+            <div class="country">Title</div>
+            <div class="country"></div>
+          </div>
+          <div class="table-row"  *ngFor="let a of filteredArticle | paginate: { itemsPerPage: 10, currentPage: p }; let i=index">
+            <div class="serial">{{i + 1}}</div>
+            <div class="country">{{a.title}}</div>
+            <div class="country">
+              <a 
+                [routerLink]="['/admin/edit-article',a.id]" 
+                class="genric-btn info-border circle"
+                >
+                Edit
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br>
+<div class="container text-center">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+<footer class="mt-70"></footer>

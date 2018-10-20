@@ -1,0 +1,35 @@
+ 
+<div class="container">
+  <div class="col-md-8 offset-md-2">
+    <div class="section-top-border">
+      <h3 class="mb-30">Catgories</h3>
+
+      <input type="text" #query (keyup)="filter(query.value)" placeholder="Search.." class="single-input">
+<br>
+      <div class="progress-table-wrap">
+        <div class="progress-table">
+          <div class="table-head">
+            <div class="serial">#</div>
+            <div class="country">Title</div>
+            <div class="country">Url</div>
+            <div class="country"></div>
+          </div>
+          <div class="table-row"  *ngFor="let c of filteredCategory; let i=index">
+            <div class="serial">{{i + 1}}</div>
+            <div class="country">{{c.title}}</div>
+            <div class="country">{{c.url}}</div>
+            <div class="country">
+              <a 
+                [routerLink]="['/admin/edit-category/',c.id]" 
+                class="genric-btn info-border circle"
+                >
+                Edit
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="mt-70"></footer>

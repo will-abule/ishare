@@ -1,0 +1,85 @@
+ 
+<div class="section-top-border container">
+  <div class="row">
+    <div class="col-lg-8 col-md-8 offset-md-2" style="margin-top: 50px !important">
+      <h3 class="mb-30">Edit Project</h3>
+      <form  #project="ngForm" (ngSubmit)="save(project.value)" *ngIf="Project as p">
+        <div class="mt-10">
+          <input 
+            class="single-input" 
+            [(ngModel)]="p.title || project.title" 
+            #title='ngModel' 
+            name="title" 
+            id="title" 
+            type="text" 
+            placeholder="Title"
+            required
+            onfocus="this.placeholder = ''" 
+            onblur="this.placeholder = 'Title'"
+          >
+
+          <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+            Title is required.
+          </div>
+
+          <div class="mt-10">
+            <label for="discription">Project Discription</label>
+            <textarea 
+              [(ngModel)]="p.discription || project.discription" 
+              #discription='ngModel' 
+              name="discription" 
+              class="from-control card" 
+              id="discription" 
+              required
+              style="width: 100%;
+              height: 100px;
+              overflow-y: scroll;
+              overflow-x: hidden;
+              padding: 10px;"
+            >
+            </textarea>
+
+            <div class="alert alert-danger" *ngIf="discription.touched && discription.invalid">
+              Project Discription is required.
+            </div>
+          </div>
+
+          <!-- letter conditions -->
+          <div class="alert alert-danger" *ngIf="!project.valid">
+            form is not valid
+          </div>
+
+          <br>
+
+          <div class="alert alert-success" *ngIf="project.valid">
+            Everything looks good
+          </div>
+
+          <button 
+            [disabled]="!project.valid" 
+            type="submit" class="btn btn-outline-success mr-10"
+            [class.disabled]="activeButton" 
+            (click)="activeButton = !activeButton"
+          >
+            Submit
+          </button>
+
+          <a 
+          (click)="cancel()" class="btn btn-outline-warning mr-10"
+          [class.disabled]="activeButton" 
+          (click)="activeButton = !activeButton"
+          >Cancel</a>
+          <a 
+          [class.disabled]="activeButton" 
+          (click)="activeButton = !activeButton"
+          (click)="delete(p)" class="btn btn-outline-danger"
+          >Delete</a>
+
+          <!-- letter conditions -->
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer class="mt-70"></footer>

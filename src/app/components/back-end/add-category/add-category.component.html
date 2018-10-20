@@ -1,0 +1,66 @@
+
+<div class="section-top-border container">
+  <div class="row">
+    <div class="col-lg-8 col-md-8 offset-md-2" style="margin-top: 50px !important">
+      <h3 class="mb-30">Add Category</h3>
+      <form  #category="ngForm" (ngSubmit)="save(category.value)">
+        <div class="mt-10">
+          <input 
+            class="single-input" 
+            [(ngModel)]="category.title" 
+            #title='ngModel' 
+            name="title" 
+            id="title" 
+            type="text" 
+            placeholder="title"
+            required
+          >
+
+          <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+            Title is required.
+          </div>
+
+          <br>
+
+          <input 
+            class="single-input" 
+            [(ngModel)]="category.url" 
+            #url='ngModel' 
+            name="url" 
+            id="url" 
+            type="text" 
+            placeholder="url"
+            required
+          >
+
+          <div class="alert alert-danger" *ngIf="url.touched && url.invalid">
+            Url is required.
+          </div>
+          <br>
+          <div class="alert alert-danger" *ngIf="!category.valid">
+            form is not valid
+          </div>
+          <br>
+          <div class="alert alert-success" *ngIf="category.valid">
+            Everything looks good
+          </div>
+          <button 
+            [disabled]="!category.valid" 
+            type="submit" class="btn btn-outline-success mr-10"
+            [class.disabled]="activeButton" 
+            (click)="activeButton = !activeButton"
+          >
+            Submit
+          </button>
+          <a 
+          (click)="cancel()" class="btn btn-outline-warning mr-10"
+          [class.disabled]="activeButton" 
+          (click)="activeButton = !activeButton"
+          >Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer class="mt-70"></footer>

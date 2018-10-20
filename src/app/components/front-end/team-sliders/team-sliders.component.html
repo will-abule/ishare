@@ -1,0 +1,16 @@
+<ngu-carousel [inputs]="carouselTile" (initData)="initDataFn($event)">
+
+  <ngu-tile NguCarouselItem *ngFor="let t of team">
+    <a [routerLink]="['/profile/' , t.uid]">
+      <div class="card">
+        <img style="height: auto!important;" class="card-img-top img-fluid" [src]="t.url || 'assets/geek.svg'" [alt]="t.displayName">
+        <div class="card-body">
+          <h5 class="card-title">{{ t.displayName }}</h5>
+        </div>
+      </div>
+    </a>
+  </ngu-tile>
+
+  <button NguCarouselPrev style="background: #df003a; color: #fff;" class='leftRs'>&lt;</button>
+  <button NguCarouselNext style="background: #df003a; color: #fff;" class='rightRs'>&gt;</button>
+</ngu-carousel>

@@ -1,0 +1,9 @@
+.alert {
+    padding: 10px 10px 0px 0px !important;
+}
+
+.alert-dismissible .close {
+    top: 0 !important;
+    right: 0 !important;
+    padding: 0 !important
+}

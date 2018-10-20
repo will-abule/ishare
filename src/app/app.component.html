@@ -1,0 +1,21 @@
+<div class="container" *ngIf="notify.msg | async as msg">
+  <div class="text-center alert alert-success alert-dismissible" style="
+		margin: 30px;
+		overflow: hidden;
+		width: 50%;
+		z-index: 1040;
+		position: fixed
+		" [ngClass]="{
+			'alert-danger': msg.style == 'error',
+			'alert-success': msg.style == 'success',
+			'alert-light': msg.style == 'info'
+			}">
+    <button (click)="notify.clear()" type="button" class="close text-center" data-dismiss="alert">&times;</button>
+    <p style="margin-bottom: 0px; font-size: 11px;">
+      <b>{{ msg.content }} </b>
+    </p>
+  </div>
+</div>
+
+<nav-bar></nav-bar>
+<router-outlet></router-outlet>

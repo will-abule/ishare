@@ -1,0 +1,82 @@
+ 
+<div class="">
+  <div class="post ">
+      <div class="post-content mt-100">
+        <img src="./assets/img/log.jpg" alt="login image">
+      </div>
+    <div class="post-footer">
+      <div class="post-title">
+        <div class="wrapper">
+          <ng-container>
+
+            <h6 class="mb-30">Awesome you! please Sign In <img src="./assets/signin.png" alt="sign in"></h6>
+            <form [formGroup]="userForm" (ngSubmit)="signIn()">
+              <div class="mt-10">
+                <input
+                  formControlName="email" 
+                  type="email" name="email" 
+                  placeholder="Email address" 
+                  onfocus="this.placeholder = ''" 
+                  onblur="this.placeholder = 'Email address'" 
+                  required class="single-input"
+                >
+              </div>
+
+              <div *ngIf="formErrors.email" class="alert alert-danger" role="alert">
+                {{ formErrors.email }}
+              </div>
+
+              <div class="mt-10">
+                <input 
+                  formControlName="password"
+                  type="password" 
+                  name="password" 
+                  placeholder="Password" 
+                  onfocus="this.placeholder = ''" 
+                  onblur="this.placeholder = 'Password'" 
+                  required 
+                  class="single-input"
+                >
+              </div>
+
+              <div *ngIf="formErrors.password" class="alert alert-danger" role="alert">
+                {{ formErrors.password }}
+              </div>
+              <button
+                type="submit" 
+                [disabled]="!userForm.valid" 
+                class="btn btn-outline-success mt-10"
+                >
+                Submit
+                <span *ngIf="!loader"class="lnr lnr-arrow-right"></span>
+                <!-- <div style="float: right;" [class.loader]="loader"></div> -->
+              </button>
+            </form>
+
+            <div *ngIf="user && user.veb == false">
+              <br>
+              <p><a style="color:red; cursor: pointer" (click)="reSend()">Click here</a> to resend verification</p>
+            </div>
+            <br>
+            <p *ngIf="!user">Forgot Password <a style="color:red" routerLink="/forgot-password">Click here</a> to reset Password</p>
+            <br>
+
+            <br>
+            <p *ngIf="!user">Don't have an Account? <a routerLink="/register">Click here</a> to create one</p>
+            <br>
+
+            <br>
+            <!-- <div style="float:left" class="text-center mb-30">
+              <button (click)="facebookLogin()" style="font-size: 11px" type="button" class="share inline details view-details inline btn btn1 ">
+                <img src="./assets/img/fb.svg" alt="fb image">Sign in with Facebook<span style="color: transparent;">..</span>
+              </button>
+            </div> -->
+
+          </ng-container>
+                  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="mt-70"></footer>

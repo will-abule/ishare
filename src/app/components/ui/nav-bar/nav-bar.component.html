@@ -1,0 +1,122 @@
+<!-- Start Header Area -->
+<header class="default-header mb-50" style="background: #F8CA4D;">
+  <div class="header-wrap" style="margin-top: -15px;">
+    <div class="header-top d-flex justify-content-between align-items-center">
+      <div class="logo">
+        <a routerLink="/" style="margin-top: 3px;"><h3>iShare</h3></a>
+      </div>
+      <div class="main-menubar d-flex align-items-center">
+        <nav class="hide">
+          <li
+          routerLinkActive="active current"
+          [routerLinkActiveOptions]="{ exact:true }"
+          >
+            <a routerLink="/">Home</a>
+          </li>
+          <li
+          routerLinkActive="active current"
+          [routerLinkActiveOptions]="{ exact:true }"
+          >
+            <a routerLink="/articles">Articles</a>
+          </li>
+          <li
+          routerLinkActive="active current"
+          [routerLinkActiveOptions]="{ exact:true }"
+          >
+            <a routerLink="/lessons">Lessons</a>
+          </li>
+
+          <!-- <li
+          class="dropdown"
+          routerLinkActive="active current"
+          [routerLinkActiveOptions]="{ exact:true }"
+          >
+            <a  class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+              Category
+            </a>
+            <div class="dropdown-menu" >
+              <a *ngFor="let c of categories | async"  [routerLink]="['/category/' , c.url]">{{ c.title }}</a>
+            </div>
+          </li> -->
+
+          <!-- <li
+          routerLinkActive="active current"
+          [routerLinkActiveOptions]="{ exact:true }"
+          >
+            <a routerLink="/projects">Projects</a>
+          </li> -->
+          
+          <li
+          routerLinkActive="active current"
+          [routerLinkActiveOptions]="{ exact:true }"
+          >
+            <a routerLink="/contact-us">Contact Us</a>
+          </li>
+          <li
+          routerLinkActive="active current"
+          [routerLinkActiveOptions]="{ exact:true }"
+          >
+            <a routerLink="/search"><i style="color: #df003a" class="fa fa-search"></i>Search</a>
+          </li>
+          <li
+          *ngIf="!user"
+          routerLinkActive="active current"
+          [routerLinkActiveOptions]="{ exact:true }"
+          >
+            <a routerLink="/register">Register</a>
+          </li>
+          <li
+          *ngIf="!user"
+          routerLinkActive="active current"
+          [routerLinkActiveOptions]="{ exact:true }"
+          >
+            <a routerLink="/login">Sign In</a>
+          </li>
+          <li
+          *ngIf="user"
+          class="dropdown"
+          routerLinkActive="active current"
+          [routerLinkActiveOptions]="{ exact:true }"
+          >
+            <a  class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+              {{user.displayName}}
+            </a>
+            <div class="dropdown-menu" >
+
+              <a *ngIf="auth.guest(user)" class="dropdown-item" routerLink="/admin/articles">Articles</a>
+              <a *ngIf="auth.guest(user)" class="dropdown-item" routerLink="/admin/add-article">Add Article</a>
+
+              <a *ngIf="auth.admin(user)" class="dropdown-item" routerLink="/admin/categories">Lesson Categories</a>
+              <a *ngIf="auth.admin(user)" class="dropdown-item" routerLink="/admin/add-category">Add Category</a>
+
+              <a *ngIf="auth.admin(user)" class="dropdown-item" routerLink="/admin/lessons">Lessons</a>
+              <a *ngIf="auth.admin(user)" class="dropdown-item" routerLink="/admin/add-lesson">Add Lesson</a>
+
+              <a *ngIf="auth.superAdmin(user)" class="dropdown-item" routerLink="/admin/projects">Projects</a>
+              <a *ngIf="auth.superAdmin(user)" class="dropdown-item" routerLink="/admin/add-project">Add Project</a>
+
+              <a *ngIf="auth.superAdmin(user)" class="dropdown-item" routerLink="/admin/courses">Courses</a>
+              <a *ngIf="auth.superAdmin(user)" class="dropdown-item" routerLink="/admin/add-course">Add Course</a>
+
+              <a *ngIf="auth.superAdmin(user)" class="dropdown-item" routerLink="/admin/about">Set About</a>
+              <a *ngIf="auth.superAdmin(user)" class="dropdown-item" routerLink="/admin/terms-and-conditions">Set Terms & Conditions</a>
+              <a *ngIf="auth.superAdmin(user)" class="dropdown-item" routerLink="/admin/privacy-policy">Set Privacy Policy</a>
+              <a *ngIf="auth.superAdmin(user)" class="dropdown-item" routerLink="/admin/mail">Send a mail</a>
+
+              <a *ngIf="auth.superAdmin(user)" class="dropdown-item" routerLink="/admin/users">Users</a>
+
+              <a  (click)="signOut()" class="dropdown-item" href="#">Sign Out</a>
+            </div>
+          </li>
+        </nav>
+        <div class="menu-bar">
+          <span class="lnr lnr-menu"></span>
+        </div>
+        <a  *ngIf="user" routerLink="/admin/profile">
+          <img style="margin-left: 25px;height: 30px; border-radius: 50px" [src]="user.url || 'assets/user.png'" [alt]="user.displayName">
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- End Header Area -->

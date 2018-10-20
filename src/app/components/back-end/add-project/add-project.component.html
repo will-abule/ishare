@@ -1,0 +1,138 @@
+ 
+<div class="section-top-border container">
+  <div class="row">
+    <div class="col-lg-8 col-md-8 offset-md-2" style="margin-top: 50px !important">
+      <h3 class="mb-30">Add A Project</h3>
+      <form  #project="ngForm" (ngSubmit)="save(project.value)">
+        <div class="mt-10">
+          <input 
+            class="single-input" 
+            [(ngModel)]="project.title" 
+            #title='ngModel' 
+            name="title" 
+            id="title" 
+            type="text" 
+            placeholder="Title"
+            required
+            onfocus="this.placeholder = ''" 
+            onblur="this.placeholder = 'Title'"
+          >
+
+          <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+            Title is required.
+          </div>
+
+          <br>
+
+          <input 
+            class="single-input" 
+            [(ngModel)]="project.projectUrl" 
+            #projectUrl='ngModel' 
+            name="projectUrl" 
+            id="projectUrl" 
+            type="text" 
+            placeholder="Project Url"
+            required
+            onfocus="this.placeholder = ''" 
+            onblur="this.placeholder = 'Project Url'"
+          >
+
+          <div class="alert alert-danger" *ngIf="projectUrl.touched && projectUrl.invalid">
+            Project Url is required.
+          </div>
+
+          <br>
+
+          <div class="form-group">
+            <label for="cover-photo">Project Cover Photo</label>
+            <input 
+              [(ngModel)]="project.file" 
+              #file='ngModel' 
+              name="file"  
+              type="file" 
+              class="form-control-file" 
+              id="cover-photo" 
+              (change)="detectFiles($event)"
+            >
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="5 / 5"
+                [resizeToWidth]="512"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"
+                (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>
+            </div>
+
+            <div class="col-sm-6">
+                <img class="image-fluid" [src]="croppedImage" />
+            </div>
+          </div>
+  
+          <div class="alert alert-danger" *ngIf="!selectedFiles">
+            Cover Photo is Needed
+          </div>
+
+          <br>
+
+          <div class="mt-10">
+            <label for="discription">Project Discription</label>
+            <textarea 
+              [(ngModel)]="project.discription" 
+              #discription='ngModel' 
+              name="discription" 
+              class="from-control card" 
+              id="discription" 
+              required
+              style="width: 100%;
+              height: 100px;
+              overflow-y: scroll;
+              overflow-x: hidden;
+              padding: 10px;"
+            >
+            </textarea>
+
+            <div class="alert alert-danger" *ngIf="discription.touched && discription.invalid">
+              Project Discription is required.
+            </div>
+          </div>
+
+          <!-- letter conditions -->
+          <div class="alert alert-danger" *ngIf="!project.valid">
+            form is not valid
+          </div>
+
+          <br>
+
+          <div class="alert alert-success" *ngIf="project.valid">
+            Everything looks good
+          </div>
+
+          <button 
+            [disabled]="!project.valid || !selectedFiles" 
+            type="submit" class="btn btn-outline-success mr-10"
+            [class.disabled]="activeButton" 
+            (click)="activeButton = !activeButton"
+          >
+            Submit
+          </button>
+
+          <a 
+          (click)="cancel()" class="btn btn-outline-warning mr-10"
+          [class.disabled]="activeButton" 
+          (click)="activeButton = !activeButton"
+          >Cancel</a>
+
+          <!-- letter conditions -->
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<footer class="mt-70"></footer>

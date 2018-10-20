@@ -1,0 +1,29 @@
+<br><br><br><br><br>
+<div class="container">
+	<div class="col-md-8 offset-md-2 contact-right-w3l">
+		<h3 class="mb-30" >Terms & Condition Settings</h3>
+		<form  #term="ngForm" (ngSubmit)="save(term.value)" *ngIf="terms as t">
+      
+      <textarea 
+        class="single-textarea"
+        [froalaEditor]="options" 
+        [froalaEditor] [(froalaModel)]="term.content || t.content" 
+        [(ngModel)]="term.content || t.content" 
+        #content='ngModel' 
+        name="content" 
+        id="content" 
+        type="text"
+        >
+      </textarea>
+      <br><br>
+      <button 
+        [disabled]="!term.valid" 
+        type="submit" class="btn btn-outline-danger mr-10"
+      >
+        Submit
+      </button>
+		</form>
+	</div>
+</div>
+
+<footer class="mt-70"></footer>

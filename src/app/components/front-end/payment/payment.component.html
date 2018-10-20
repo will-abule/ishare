@@ -1,0 +1,35 @@
+ 
+<section style="display: block" class="relative section-gap studio-area">
+  <div class="overlay overlay-bg"></div>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8 offset-md-2">
+          <div class="studio-content">
+						<h2>iShare Subscriptions</h2>
+						<p>
+              For you to have access to our content you must become a <i style="font-size:17px">subscriber</i>
+              <br>
+              Our subscription fee is very affordable <span>&#8358;</span>200 per month and get unlimited assess to 
+              <i style="font-size:17px; color: red;">Awesome </i>Content, code snippet and real world projects.  
+            </p>
+            <div  class="row" *ngIf="user">
+              <div class="col-md-10 offset-md-2">
+                <angular4-paystack
+                  [key]="'pk_test_6585b03d0e94806cfe10ffe722fcdb4b7764711e'"
+                  [email]="user.email"
+                  [amount]="'20000'"
+                  [ref]="g()"
+                  [class]="'primary-btn'"
+                  (close)="paymentCancel()"
+                  (callback)="paymentDone(user)"
+                  >Proceed<span class="lnr lnr-arrow-right"></span>
+                </angular4-paystack>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End studio Area -->
+<footer class="mt-70"></footer>

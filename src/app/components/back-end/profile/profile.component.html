@@ -1,0 +1,145 @@
+<div class="align-items-center">
+  <loading-spinner *ngIf="!user"></loading-spinner>
+</div>
+
+<div class="row container" *ngIf="!edit">
+  <div *ngIf="user" style="width: 100%; padding: 50px 50px 10px">
+    <button class="btn btn-outline-danger" (click)="edit = !edit" style="float: right">Edit Profile</button>
+  </div>
+  <div class="col-md-10 offset-md-1">
+    <div class="section-top-border">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="container">
+            <img class="img-fluid" [src]="user.url">
+          </div>
+        </div>
+        <div class="col-md-7 mt-40">
+          <div class="container">
+            <h4 class="mb-30">{{user.displayName}}</h4>
+            <hr>
+            <p [froalaView]="user.discription"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div  *ngIf="edit" class="row container">
+  <div class="col-md-10 offset-md-1">
+    <div class="section-top-border">
+      <h3 class="mb-30">Edit Profile</h3>
+      <form #profile="ngForm" (ngSubmit)="save(profile.value)" *ngIf="user">
+        <div class="mt-10">
+          <input 
+            class="single-input" 
+            [(ngModel)]="user.displayName || profile.displayName" 
+            #displayName='ngModel' 
+            name="displayName" 
+            id="displayName" 
+            type="text"
+            placeholder="Your Name" 
+            required onfocus="this.placeholder = ''" 
+            onblur="this.placeholder = 'Your Name'"
+          >
+
+          <div class="alert alert-danger" *ngIf="displayName.touched && displayName.invalid">
+            Your Name is required.
+          </div>
+
+          <br>
+
+          <div class="form-group">
+            <label for="cover-photo">Profle Photo</label>
+            <input 
+              [(ngModel)]="profile.file" 
+              #file='ngModel' name="file" 
+              type="file" 
+              class="form-control" 
+              id="cover-photo"
+              (change)="detectFiles($event)">
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="5 / 5"
+                [resizeToWidth]="512"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"
+                (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>
+            </div>
+
+            <div class="col-sm-6">
+                <img class="image-fluid" [src]="croppedImage" />
+            </div>
+          </div>
+
+          <div class="alert alert-info" *ngIf="!selectedFiles">
+            Don't forget to add Your Prifile Photo! (optional by the way).
+          </div>
+
+          <br>
+
+          <div class="mt-10">
+            <label for="discription">Discribe Yourself</label>
+            <textarea 
+              [(ngModel)]="user.discription || profile.discription" 
+              [froalaEditor]="options" 
+              [froalaEditor] [(froalaModel)]="user.discription || profile.discription"
+              #discription='ngModel' 
+              name="discription" 
+              class="from-control card" 
+              id="discription" 
+              required style="width: 100%; height: 100px;"
+            >
+            </textarea>
+
+            <div class="alert alert-danger" *ngIf="discription.touched && discription.invalid">
+                Discription is required.
+            </div>
+
+          </div>           
+          <div class="alert alert-danger" *ngIf="discription.touched && discription.invalid">
+              Discription is required.
+          </div>
+
+
+          <br>
+
+          <div class="alert alert-danger" *ngIf="!profile.valid">
+            form is not valid
+          </div>
+
+          <br>
+          <div class="alert alert-success" *ngIf="profile.valid">
+            Everything looks good
+          </div>
+
+          <button 
+            [disabled]="!profile.valid" 
+            [class.disabled]="activeButton" 
+            (click)="activeButton = !activeButton"
+            type="submit" 
+            class="btn btn-outline-success mr-10"
+          >
+            {{submit}}
+            <div style="float: right;  border-top: 2px solid #28a745" [class.loader]="loader"></div>
+          </button>
+
+          <a (click)="edit = !edit" class="btn btn-outline-warning mr-10" [class.disabled]="activeButton">Cancel</a>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

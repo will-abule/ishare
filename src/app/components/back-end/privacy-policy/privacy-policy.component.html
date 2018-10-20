@@ -1,0 +1,29 @@
+<br><br><br><br><br>
+<div class="container">
+	<div class="col-md-8 offset-md-2 contact-right-w3l">
+		<h3 class="mb-30" >privacy & Condition Settings</h3>
+		<form  #privacys="ngForm" (ngSubmit)="save(privacys.value)" *ngIf="privacy as p">
+      
+      <textarea 
+        class="single-textarea"
+        [froalaEditor]="options" 
+        [froalaEditor] [(froalaModel)]="privacys.content || p.content" 
+        [(ngModel)]="privacys.content || p.content" 
+        #content='ngModel' 
+        name="content" 
+        id="content" 
+        type="text"
+        >
+      </textarea>
+      <br><br>
+      <button 
+        [disabled]="!privacys.valid" 
+        type="submit" class="btn btn-outline-danger mr-10"
+      >
+        Submit
+      </button>
+		</form>
+	</div>
+</div>
+
+<footer class="mt-70"></footer>
