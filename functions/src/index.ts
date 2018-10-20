@@ -44,7 +44,8 @@ function sendMail(data) {
                         substitutionWrappers    : ['{{', '}}'],
                         substitutions           : {
                             title               : title,
-                            discription         : discription
+                            discription         : discription,
+                            id                  : eachDoc.id,
                         }
                     };
                     return sgMail.send(message)

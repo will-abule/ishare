@@ -38,7 +38,7 @@ export class AddCourseComponent implements OnInit {
 
   detectFiles($event) {
     this.selectedFiles = ($event.target as HTMLInputElement).files;
-    this.imageChangedEvent = event;
+    this.imageChangedEvent = $event;
   }
 
   imageCropped(event: ImageCroppedEvent) {

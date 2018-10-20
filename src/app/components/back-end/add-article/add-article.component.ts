@@ -120,7 +120,7 @@ export class AddArticleComponent implements OnInit {
 
   detectFiles($event) {
     this.selectedFiles = ($event.target as HTMLInputElement).files;
-    this.imageChangedEvent = event;
+    this.imageChangedEvent = $event;
   }
 
   imageCropped(event: ImageCroppedEvent) {
