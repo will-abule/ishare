@@ -16,6 +16,7 @@ export class SearchComponent implements OnInit {
   defaultImage      =   'assets/loading.gif';
   offset            =   100;
   p: number         =   1;
+  touched           =   false
 
   constructor(private lesson: LessonService, private article : ArticleService) { 
     this.lesson.getLessons().subscribe(p => {this.Lesson = p})
@@ -27,8 +28,7 @@ export class SearchComponent implements OnInit {
   }
 
   filter(query:string ) {
-
-    this.filteredLesson = [] = []
+    this.touched      = true
     
     this.data = this.Lesson.concat(this.Article)
 
@@ -38,7 +38,9 @@ export class SearchComponent implements OnInit {
       this.data.filter(p => p.title.toLowerCase().includes(query.toLowerCase())):
       this.filteredLesson = [] = []
       
-      console.log(this.filteredLesson);
+      if(query === "") {
+        this.touched = false
+      }
       
     }
   }
