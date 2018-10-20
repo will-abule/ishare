@@ -12,7 +12,7 @@ export class SeoService {
     // default values
     config = { 
       title: 'iShare', 
-      description: 'build crispy client-side web application 😎 with Angular.', 
+      description: 'build crispy applications using different technologies.', 
       image: 'https://teamishare.com/assets/img/iSharelogo.png',
       slug: '',
       ...config

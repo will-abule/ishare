@@ -1,0 +1,16 @@
+[debug] [2018-10-20T01:43:41.493Z] ----------------------------------------------------------------------
+[debug] [2018-10-20T01:43:41.500Z] Command:       /usr/bin/node /usr/bin/firebase deploy --only hosting
+[debug] [2018-10-20T01:43:41.500Z] CLI Version:   5.1.1
+[debug] [2018-10-20T01:43:41.500Z] Platform:      linux
+[debug] [2018-10-20T01:43:41.500Z] Node Version:  v8.12.0
+[debug] [2018-10-20T01:43:41.501Z] Time:          Sat Oct 20 2018 02:43:41 GMT+0100 (WAT)
+[debug] [2018-10-20T01:43:41.501Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-10-20T01:43:41.763Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-10-20T01:43:41.764Z] > authorizing via signed-in user
+[debug] [2018-10-20T01:43:41.764Z] [iam] checking project ishare-app for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2018-10-20T01:43:41.768Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/ishare-app:testIamPermissions  
+
+[debug] [2018-10-20T01:43:44.281Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-20T01:43:44.282Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/ishare-app  
+ 
