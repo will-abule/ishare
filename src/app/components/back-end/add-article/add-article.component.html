@@ -42,7 +42,7 @@
             </div>
 
             <div class="col-sm-6">
-                <img class="image-fluid" [src]="croppedImage" />
+                <!-- <img class="image-fluid" [src]="croppedImage" /> -->
             </div>
           </div>
   
@@ -114,7 +114,7 @@
           <button [disabled]="!article.valid || !selectedFiles" [class.disabled]="activeButton" (click)="activeButton = !activeButton"
             type="submit" class="btn btn-outline-success mr-10">
             {{submit}}
-            <div style="float: right;  border-top: 2px solid #28a745" [class.loader]="loader"></div>
+            <!-- <div style="float: right;  border-top: 2px solid #28a745" [class.loader]="loader"></div> -->
           </button>
 
           <a (click)="cancel()" class="btn btn-outline-warning mr-10" [class.disabled]="activeButton" (click)="activeButton = !activeButton">Cancel</a>
