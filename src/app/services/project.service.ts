@@ -99,19 +99,8 @@ export class ProjectService {
 
   // Writes the file details to the realtime db Document
   private saveFileData(Project: Project) {
-
-    const data: Project = {
-      // name          :   Project.name,
-      title         :   Project.title,
-      url           :   Project.url,
-      projectUrl    :   Project.projectUrl,
-      discription   :   Project.discription,
-      type          :   'project'
-    };
-
-    console.log(data)
    
-    return this.afs.add(this.basePath,data)
+    return this.afs.add(this.basePath,Project)
     .then( () => {
       this.notify.update('Posted', 'success')
       this.router.navigate(['/admin/projects'])

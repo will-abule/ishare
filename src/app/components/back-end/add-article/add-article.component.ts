@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { ArticleService } from '../../../services/article.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -112,7 +113,8 @@ export class AddArticleComponent implements OnInit {
   
   constructor(
     private router          : Router,
-    private ArticleService  : ArticleService
+    private ArticleService  : ArticleService,
+    public  auth            : AuthService
   ) { }
 
   ngOnInit() {
@@ -142,7 +144,7 @@ export class AddArticleComponent implements OnInit {
     const file = this.selectedFiles;
     if (file && file.length === 1) {
       // this.Article = new Upload(file.item(0));
-      this.ArticleService.saveArticleNew(this.croppedImage, a)
+      this.auth.user.subscribe(user => this.ArticleService.saveArticleNew(this.croppedImage, a, user.uid))
     } else {
       console.error('No file found!');
     }

@@ -110,21 +110,8 @@ export class LessonService {
 
   // Writes the file details to the realtime db Document
   private saveFileData(Lesson: Lesson) {
-
-    const data: Lesson = {
-      // name          :   Lesson.name,
-      title         :   Lesson.title,
-      url           :   Lesson.url,
-      discription   :   Lesson.discription,
-      videoUrl      :   Lesson.videoUrl,    
-      category      :   Lesson.category,
-      body          :   Lesson.body,
-      type          :   'lesson'
-    };
-
-    console.log(data)
    
-    return this.afs.add(this.basePath,data)
+    return this.afs.add(this.basePath,Lesson)
     .then( () => {
       this.notify.update('Posted', 'success')
       this.router.navigate(['/admin/lessons'])
@@ -136,16 +123,8 @@ export class LessonService {
 
   // Writes the file details to the realtime db Document
   private updateFileData(Lesson: Lesson, id) {
-  
-    const data = {
-      title         :   Lesson.title,
-      discription   :   Lesson.discription,
-      videoUrl      :   Lesson.videoUrl,    
-      category      :   Lesson.category,
-      body          :   Lesson.body
-    };
         
-    return this.afs.update(`${this.basePath}/${id}`,data)
+    return this.afs.update(`${this.basePath}/${id}`,Lesson)
     .then( () => {
       this.notify.update('Updated', 'success')
       this.router.navigate(['/admin/lessons'])

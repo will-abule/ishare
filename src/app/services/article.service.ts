@@ -70,6 +70,7 @@ export class ArticleService {
           name            :   Article.file.name,
           body            :   a.body,
           author          :   a.author,
+          uid             :   a.uid,
           type            :   'article'
         } 
         if (Url) {
@@ -82,13 +83,14 @@ export class ArticleService {
     })
   }
 
-  saveArticleNew(url, a) {
+  saveArticleNew(url, a, uid) {
     const data = {
       title           :   a.title,
       discription     :   a.discription,
       url             :   url,
       body            :   a.body,
       author          :   a.author,
+      uid             :   uid,
       type            :   'article'
     } 
     if (url) {
@@ -106,21 +108,9 @@ export class ArticleService {
   }
 
   // Writes the file details to the realtime db Document
-  private saveFileData(Article: Article) {
-
-    const data: Article = {
-      // name          :   Article.name,
-      title         :   Article.title,
-      url           :   Article.url,
-      discription   :   Article.discription,
-      author        :   Article.author,
-      body          :   Article.body,
-      type          :   'article'
-    };
-
-    console.log(data)
+  private saveFileData(Article) {
    
-    return this.afs.add(this.basePath,data)
+    return this.afs.add(this.basePath,Article)
     .then( () => {
       this.notify.update('Posted', 'success')
       this.router.navigate(['/admin/articles'])
